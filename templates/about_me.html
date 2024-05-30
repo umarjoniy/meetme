@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <section class="banner_area">
+        <div class="box_1620">
+            <div class="banner_inner d-flex align-items-center">
+                <div class="container">
+                    <div class="banner_content text-center">
+                        <h2>About</h2>
+                        <div class="page_link">
+                            <a href="{% url 'index' %}">Home</a>
+                            <a href="">About</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="profile_area">
+        <div class="container">
+            <div class="profile_inner p_120">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <img class="img-fluid photo" src="{{ me.photo.url }}" alt="My Photo">
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="personal_text">
+                            <h6>Hello Everybody, i am</h6>
+                            <h3>{{ me.name }} {{ me.lastname }}</h3>
+                            <h4>{{ me.job_title }}</h4>
+                            <p>{{ me.short_description }}</p>
+                            <ul class="list basic_info">
+                                <li><a href="#"><i class="lnr lnr-calendar-full"></i> {{ me.birthdate }}</a></li>
+                                <li><a href="tel:{{ me.phone_number }}"><i
+                                        class="lnr lnr-phone-handset"></i> {{ me.phone_number }}</a></li>
+                                <li><a href="mailto:{{ me.email }}"><i class="lnr lnr-envelope"></i> {{ me.email }}</a>
+                                </li>
+                                <li><a href="#"><i class="lnr lnr-home"></i> {{ me.address }}</a></li>
+                            </ul>
+                            <ul class="list personal_social">
+
+                                {% for i in social_media %}
+                                    <li><a href="{{ i.url }}"><i class="{{ i.name_for_css }}"></i></a></li>
+                                {% endfor %}
+                            </ul>
+                            <div class="download_btn">
+                                <a class="main_btn" href="{{ cv.cv.url }}" download="{{ cv.filename }}">Download CV</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="welcome_area p_120">
+        <div class="container">
+            <div class="row welcome_inner">
+                <div class="col-lg-6">
+                    <div class="welcome_text">
+                        <h4>About Myself</h4>
+                        <p>{{ me.description }}</p>
+                        <div class="row">
+                            {% for statistic in statistics %}
+
+                            <div class="col-md-4">
+                                <div class="wel_item">
+                                    <i class="lnr lnr-{{ statistic.css_style }}"></i>
+                                    <h4>{{ statistic.value }}</h4>
+                                    <p>{{ statistic.name}}</p>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="tools_expert">
+                        <div class="skill_main">
+                            {% for skill in skills %}
+                                <div class="skill_item">
+                                    <h4>{{ skill.name }} <span class="counter">{{ skill.percent }}</span>%</h4>
+                                    <div class="progress_br">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar"
+                                                 aria-valuenow="{{ skill.percent }}"
+                                                 aria-valuemin="0" aria-valuemax="{{ skill.percent }}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

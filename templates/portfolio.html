@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section class="banner_area">
+        <div class="box_1620">
+            <div class="banner_inner d-flex align-items-center">
+                <div class="container">
+                    <div class="banner_content text-center">
+                        <h2>Portfolio</h2>
+                        <div class="page_link">
+                            <a href="{% url 'index' %}">Home</a>
+                            <a href="">Portfolio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="home_gallery_area p_120">
+        <div class="container">
+            <div class="main_title">
+                <h2>All My Projects</h2>
+                <p>Why not tap on every project and read description?</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="gallery_f_inner row imageGallery1">
+                {% for project in projects %}
+                    <div class="col-lg-4 col-md-4 col-sm-6 brand ">
+                        <div class="h_gallery_item">
+                            <div class="g_img_item">
+
+                                <img class="img-fluid" src="{{ project.images.first.image.url }}"
+                                     alt="{{ project.title }}">
+                                <a class="lightt" href="{{ project.slug }}/"><img
+                                        src="{% static 'img/gallery/icon.png' %}" alt></a>
+                            </div>
+                            <div class="g_item_text">
+                                <h4>{{ project.title }}</h4>
+                                <p>{{ project.small_description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

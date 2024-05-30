@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <section class="home_banner_area">
+        <div class="container box_1620">
+            <div class="banner_inner d-flex align-items-center">
+                <div class="banner_content">
+                    <div class="media">
+                        <div class="d-flex">
+                            <img class="photo" src="{{ me.photo.url }}" alt="My photo">
+                        </div>
+                        <div class="media-body">
+                            <div class="personal_text">
+                                <h6>Hello Everybody, i am</h6>
+                                <h3>{{ me.name }} {{ me.lastname }}</h3>
+                                <h4>{{ me.job_title }}</h4>
+                                <p>{{ me.short_description }}</p>
+                                <ul class="list basic_info">
+                                    <li><a href="#"><i class="lnr lnr-calendar-full"></i> {{ me.birthdate }}</a></li>
+                                    <li><a href="tel:{{ me.phone_number }}"><i
+                                            class="lnr lnr-phone-handset"></i> {{ me.phone_number }}</a></li>
+                                    <li><a href="mailto:{{ me.email }}"><i class="lnr lnr-envelope"></i> {{ me.email }}
+                                    </a>
+                                    </li>
+                                    <li><a href="#"><i class="lnr lnr-home"></i> {{ me.address }}</a></li>
+                                </ul>
+                                <ul class="list personal_social">
+
+                                    {% for i in social_media %}
+                                        <li><a href="{{ i.url }}"><i class="{{ i.name_for_css }}"></i></a></li>
+                                    {% endfor %}
+
+                                </ul>
+                                <div class="download_btn">
+                                    <a class="main_btn" href="{{ cv.cv.url }}" download="{{ cv.filename }}">Download
+                                        CV</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="welcome_area p_120">
+        <div class="container">
+            <div class="row welcome_inner">
+                <div class="col-lg-6">
+                    <div class="welcome_text">
+                        <h4>About Myself</h4>
+                        <p>{{ me.description }}</p>
+                        <div class="row">
+                            {% for statistic in statistics %}
+
+                                <div class="col-md-4">
+                                    <div class="wel_item">
+                                        <i class="lnr lnr-{{ statistic.css_style }}"></i>
+                                        <h4>{{ statistic.value }}</h4>
+                                        <p>{{ statistic.name }}</p>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="tools_expert">
+                        <div class="skill_main">
+                            {% for skill in skills %}
+
+                                <div class="skill_item">
+                                    <h4>{{ skill.name }} <span class="counter">{{ skill.percent }}</span>%</h4>
+                                    <div class="progress_br">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar"
+                                                 aria-valuenow="{{ skill.percent }}"
+                                                 aria-valuemin="0" aria-valuemax="{{ skill.percent }}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="mytabs_area p_120">
+        <div class="container">
+            <div class="tabs_inner">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                           aria-controls="home" aria-selected="true">My Experiences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                           aria-controls="profile" aria-selected="false">My Education</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <ul class="list">
+                            {% for experience in experiences %}
+
+                                <li>
+
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <p>{{ experience.period }}</p>
+                                        </div>
+                                        <div class="d-flex"><span></span></div>
+                                        <div class="media-body">
+                                            <h4>{{ experience.title }}</h4>
+                                            <p>{{ experience.job_title }} <br/>{{ experience.location }}</p>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <ul class="list">
+                            {% for education in educations %}
+
+                                <li>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <p>{{ education.period }}</p>
+                                        </div>
+                                        <div class="d-flex"><span></span></div>
+                                        <div class="media-body">
+                                            <h4>{{ education.title }}</h4>
+                                            <p>{{ education.position_degree }} <br/>{{ education.location }}</p>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="home_gallery_area p_120">
+        <div class="container">
+            <div class="main_title">
+                <h2>All My Projects</h2>
+                <p>Why not tap on every project and read description?</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="gallery_f_inner row imageGallery1">
+                {% for project in projects %}
+                    <div class="col-lg-4 col-md-4 col-sm-6 brand ">
+                        <div class="h_gallery_item">
+                            <div class="g_img_item">
+
+                                <img class="img-fluid" src="{{ project.images.first.image.url }}"
+                                     alt="{{ project.title }}">
+                                <a class="lightt" href="{{ project.slug }}/"><img
+                                        src="{% static 'img/gallery/icon.png' %}" alt></a>
+                            </div>
+                            <div class="g_item_text">
+                                <h4>{{ project.title }}</h4>
+                                <p>{{ project.small_description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
