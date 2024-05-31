@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-y)k)c^$c=nh)897c+z3lot587in1@!kt9+hc!wdtheje%l$j^u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['meetme.railway.internal','*']
+ALLOWED_HOSTS = ['meetme-production.up.railway.app','*']
 
 # Application definition
 
